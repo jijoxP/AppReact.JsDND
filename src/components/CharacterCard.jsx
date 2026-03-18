@@ -5,15 +5,7 @@ function CharacterCard({ character, onSelect }) {
 		}
 	};
 
-	const stats = {
-		strength: character.strength,
-		dexterity: character.dexterity,
-		constitution: character.constitution,
-		intelligence: character.intelligence,
-		wisdom: character.wisdom,
-		charisma: character.charisma,
-	};
-
+	// c'est pour éviter les erreurs si des données sont manquantes
 	return (
 		<div className="character-card" onClick={handleClick} style={{ cursor: "pointer" }}>
 			{character?.image && (
@@ -23,17 +15,6 @@ function CharacterCard({ character, onSelect }) {
 			<p className="character-card-class">Classe : {character?.class?.name}</p>
 			<p className="character-card-race">Race : {character?.race?.name}</p>
 			<p className="character-card-level">Niveau : {character?.level}</p>
-			{stats && (
-				<div>
-					<p><strong>Statistiques :</strong></p>
-					{Object.entries(stats).map(([stat, value]) => (
-						<div key={stat}>
-							<label htmlFor={`${stat}-progress`}>{stat}: {value}</label>
-							<progress id={`${stat}-progress`} value={value} max={20} />
-						</div>
-					))}
-				</div>
-			)}
 		</div>
 	);
 }

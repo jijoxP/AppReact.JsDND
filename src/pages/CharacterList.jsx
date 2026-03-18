@@ -3,6 +3,7 @@ import { getCharacters, getRaces, getClasses } from "../api";
 import CharacterCard from "../components/CharacterCard";
 
 function CharacterList({ onSelectCharacter }) {
+	// Set tout 
 	const [characters, setCharacters] = useState([]);
 	const [races, setRaces] = useState([]);
 	const [classes, setClasses] = useState([]);
@@ -11,6 +12,7 @@ function CharacterList({ onSelectCharacter }) {
 	const [filters, setFilters] = useState({ name: "", race: "", class: "" });
 	const [sort, setSort] = useState({ by: "name", order: "asc" });
 
+	// on charge les données au début
 	useEffect(() => {
 		async function fetchData() {
 			try {
@@ -36,7 +38,7 @@ function CharacterList({ onSelectCharacter }) {
 		const { name, value } = e.target;
 		setFilters((prev) => ({ ...prev, [name]: value }));
 	};
-
+	// tri par nom ou niveau
 	const handleSortChange = (e) => {
 		const { value } = e.target;
 		setSort((prev) => ({
@@ -63,6 +65,7 @@ function CharacterList({ onSelectCharacter }) {
 
 	if (loading) return <p>Chargement...</p>;
 	if (error) return <p style={{ color: "red" }}>{error}</p>;
+
 
 	return (
 		<div>
