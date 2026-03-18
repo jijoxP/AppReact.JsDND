@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+  --font-main: 'Lora', serif;
+  --font-title: 'MedievalSharp', cursive;
+
+  --color-parchment: #f5e5c3;
+  --color-dark-wood: #3e2c1d;
+  --color-dark-red: #8a0303;
+  --color-ink: #1a1a1a;
+  --color-gold: #d4af37;
+  --color-stone: #6c757d;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: #050714; /* Bleu nuit */
+  color: var(--color-parchment); /* Texte clair pour le contraste */
+  margin: 0;
+  padding: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--color-dark-red);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--color-parchment);
+  border: 10px solid transparent;
+  border-image: url('https://i.imgur.com/sJm2Ksk.png') 30 stretch;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  padding: 2rem;
+}
+
+.character-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.character-card {
+  background-color: #fffaf0;
+  border: 1px solid var(--color-dark-wood);
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+}
+
+.character-card-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--color-dark-wood);
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.character-card-name {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.character-card-class,
+.character-card-race,
+.character-card-level {
+  margin: 0.25rem 0;
+  font-style: italic;
+  color: var(--color-stone);
+}
+
+/* Forms */
+input, select, button {
+  font-family: var(--font-main);
+  background-color: #fffaf0;
+  border: 1px solid var(--color-dark-wood);
+  padding: 0.75rem;
+  border-radius: 0;
+  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+button, select {
+  cursor: pointer;
+}
+
+button {
+  background-color: var(--color-dark-red);
+  color: var(--color-parchment);
+  border: 1px solid var(--color-dark-wood);
+  font-family: var(--font-title);
+  text-transform: uppercase;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #6d0202;
+}
+
+.filters, .sorting {
+  background-color: rgba(0,0,0,0.05);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px dashed var(--color-dark-wood);
+}
