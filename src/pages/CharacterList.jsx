@@ -45,7 +45,7 @@ function CharacterList({ onSelectCharacter }) {
 			order: prev.by === value ? (prev.order === "asc" ? "desc" : "asc") : "asc",
 		}));
 	};
-
+	
 	const filteredCharacters = characters
 		.filter(
 			(char) =>

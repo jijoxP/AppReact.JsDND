@@ -11,6 +11,7 @@ function CharacterDetail({ id, onBack }) {
             setLoading(true);
             try {
                 const data = await getCharacter(id);
+                console.log("Character data:", data);
                 setCharacter(data);
             } catch (error) {
                 setCharacter(null);
@@ -32,10 +33,13 @@ function CharacterDetail({ id, onBack }) {
             <button onClick={onBack} style={{ marginBottom: "1rem" }}>Retour</button>
             <CharacterCard character={character} onSelect={() => {}} />
             {<div style={{ marginTop: "1rem" }}>
+                {character?.image && (
+				<img src={character.image} alt={character.name} className="character-card-image" />
+			)}
                 {character.name && <p><strong>Nom :</strong> {character.name}</p>}
-                {character.class && <p><strong>Classe :</strong> {character.class}</p>}
-                {character.race && <p><strong>race :</strong>{character.race}</p>}
-                {character.skills.length > 0 && (
+                {character.class && <p><strong>Classe :</strong> {character.class.name}</p>}
+                {character.race && <p><strong>race :</strong>{character.race.name}</p>}
+                {character.skills && character.skills.length > 0 && (
                     <div>
                         <p><strong>Compétences :</strong></p>
                         <ul>
@@ -43,6 +47,17 @@ function CharacterDetail({ id, onBack }) {
                                 <li key={skill}>{skill}</li>
                             ))}
                         </ul>
+                    </div>
+                )}
+                {character.stats && (
+                    <div>
+                        <p><strong>Statistiques :</strong></p>
+                        {Object.entries(character.stats).map(([stat, value]) => (
+                            <div key={stat}>
+                                <label htmlFor={`${stat}-progress`}>{stat}: {value}</label>
+                                <progress id={`${stat}-progress`} value={value} max={15} />
+                            </div>
+                        ))}
                     </div>
                 )}
             </div>}
