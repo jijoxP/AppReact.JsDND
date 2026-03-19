@@ -66,7 +66,6 @@ function CharacterList({ onSelectCharacter }) {
 	if (loading) return <p>Chargement...</p>;
 	if (error) return <p style={{ color: "red" }}>{error}</p>;
 
-
 	return (
 		<div>
 			<div className="filters" style={{ marginBottom: "1rem" }}>

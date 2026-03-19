@@ -1,17 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import CharacterList from "./pages/CharacterList";
 import CharacterDetail from "./pages/CharacterDetail";
-function App() {
-  const [selectedId, setSelectedId] = useState(null);
+import GroupList from "./pages/GroupList";
+import GroupDetail from "./pages/GroupDetail";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
+function App() {
   return (
-    <div>
-      <h1>Mon application</h1>
-      {selectedId === null ? (
-        <CharacterList onSelectCharacter={setSelectedId} />
-      ) : (
-        <CharacterDetail id={selectedId} onBack={() => setSelectedId(null)} />
-      )}
+    <div className="app-container">
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<CharacterList />} />
+          <Route path="/characters/:id" element={<CharacterDetail />} />
+          <Route path="/groups" element={<GroupList />} />
+          <Route path="/groups/:id" element={<GroupDetail />} />
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
 }

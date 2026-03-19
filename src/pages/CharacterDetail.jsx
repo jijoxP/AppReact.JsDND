@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import CharacterCard from "../components/CharacterCard";
-import { getCharacter } from "../api";
+import { getCharacter, getClass } from "../api";
 
-function CharacterDetail({ id, onBack }) {
-    const [character, setCharacter] = useState(null); // remplit avec les données du personnage
-    const [loading, setLoading] = useState(true);// marque si les données charges
+function CharacterDetail() {
+    const [character, setCharacter] = useState(null);// on recupère les détails du person
+    const [characterClass, setCharacterClass] = useState(null);// on stocke les détails de la classe pour afficher les compétences
+    const [loading, setLoading] = useState(true);
+    const { id } = useParams();// on récupère l'id du personnage depuis l'URL
+    const navigate = useNavigate();
 
-    // on charge les données
     useEffect(() => {
-        async function fetchCharacter() {
+        async function fetchCharacter() { //on récupère les détails du personnage et de sa classe
+            if (!id) return;
             setLoading(true);
             try {
                 const data = await getCharacter(id);
                 console.log("Character data:", data);
                 setCharacter(data);
+                // si data.class et data.class.id existent,récup les détails de la classe 
+                if (data.class && data.class.id) {
+                    const classData = await getClass(data.class.id);
+                    setCharacterClass(classData);
+                }
             } catch (error) {
+                console.error(error);
                 setCharacter(null);
             }
             setLoading(false);
@@ -32,30 +42,30 @@ function CharacterDetail({ id, onBack }) {
     // affichage détails du perso avec des vérifs
     return (
         <div className="character-detail">
-            <button onClick={onBack} style={{ marginBottom: "1rem" }}>Retour</button>
-            {character?.image && (
-                <img src={character.image} alt={character.name} className="character-detail-image" />
-            )}
             <div className="character-detail-info">
                 {character.name && <h1>{character.name}</h1>}
+                {character?.image && (
+                <img src={`http://localhost:8000/uploads/images/characters/${character.image}`} alt={character.name} className="character-card-image" />
+            )}
                 <div className="character-detail-core">
                     {character.class && <p><strong>Classe :</strong> {character.class.name}</p>}
                     {character.race && <p><strong>Race :</strong> {character.race.name}</p>}
                     {character.level && <p><strong>Niveau :</strong> {character.level}</p>}
                 </div>
-
-                {character.skills && character.skills.length > 0 && (
+                {characterClass?.skills?.length > 0 && (
                     <div className="character-detail-skills">
                         <h2>Compétences</h2>
                         <ul>
-                            {character.skills.map(skill => (
-                                <li key={skill}>{skill}</li>
+                            {characterClass.skills.map((skill, index) => (
+                                <li key={skill.id || index}>{skill.name || skill}</li>
                             ))}
                         </ul>
                     </div>
                 )}
                 <div className="character-detail-stats">
-                    <h2>Statistiques</h2>
+                    <button onClick={() => navigate(-1)} style={{ marginBottom: "1rem" }}>Retour</button>
+                    <h2>Statistiques </h2>
+                    
                     <div className="stats-container">
                         {Object.entries({
                             Force: character.strength,
