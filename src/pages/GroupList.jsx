@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // lien pour les personnages dans les groupes
 import { getParties } from "../api";
 
 function GroupList() {
-    const [groups, setGroups] = useState([]);
+    const [groups, setGroups] = useState([]); 
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [onlyAvailable, setOnlyAvailable] = useState(false);
+    const [error, setError] = useState(null);// pour afficher que les groupes avec des places dispo
+    const [onlyAvailable, setOnlyAvailable] = useState(false);// pour afficher que les groupes avec des places dispo
 
     useEffect(() => {
         async function fetchGroups() {

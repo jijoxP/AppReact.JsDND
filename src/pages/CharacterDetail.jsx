@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import CharacterCard from "../components/CharacterCard";
 import { getCharacter, getClass } from "../api";
 
@@ -62,6 +62,22 @@ function CharacterDetail() {
                         </ul>
                     </div>
                 )}
+                
+                {(character?.parties?.length > 0 || character?.groups?.length > 0 || character?.party || character?.group) && (
+                    <div className="character-detail-groups">
+                        <h2>Groupes</h2>
+                        <ul>
+                            {(character.parties || character.groups || [character.party || character.group].filter(Boolean)).map((group, index) => (
+                                <li key={group.id || index}>
+                                    <Link to={`/groups/${group.id}`}>
+                                        {group.name || `Groupe ${group.id}`}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
                 <div className="character-detail-stats">
                     <button onClick={() => navigate(-1)} style={{ marginBottom: "1rem" }}>Retour</button>
                     <h2>Statistiques </h2>
