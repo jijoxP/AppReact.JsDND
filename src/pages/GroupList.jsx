@@ -34,26 +34,26 @@ function GroupList() {
             <h1>Liste des groupes</h1>
             
             <div className="filter-container" style={{ marginBottom: "1rem" }}>
-                <label>
+                <label style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                     <input 
                         type="checkbox" 
                         checked={onlyAvailable} 
                         onChange={(e) => setOnlyAvailable(e.target.checked)} 
+                        style={{ width: "auto", margin: 0 }}
                     />
                     Afficher uniquement les groupes avec des places disponibles
                 </label>
             </div>
 
-            <div className="groups-container">
+            <div className="character-list">
                 {displayedGroups.length === 0 ? (
                     <p>Aucun groupe trouvé.</p>
                 ) : (
                     displayedGroups.map((group) => (
-                        <div key={group.id} className="group-card">
-                            <h2>{group.name}</h2>
-                            <p>Places disponibles : {group.places}</p>
-                            <Link to={`/groups/${group.id}`}>Voir les détails</Link>
-                        </div>
+                        <Link to={`/groups/${group.id}`} key={group.id} className="character-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <h3 className="character-card-name">{group.name}</h3>
+                            <p className="character-card-level">Places disponibles : {group.places}</p>
+                        </Link>
                     ))
                 )}
             </div>

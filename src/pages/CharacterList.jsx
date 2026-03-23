@@ -123,7 +123,7 @@ function CharacterList({ onSelectCharacter }) {
 					}
 					style={{ marginLeft: "0.5rem", padding: "0.5rem" }}
 				>
-					{sort.order === "asc" ? "↑" : "↓"}
+					{sort.order === "asc" ? "Croissant ↓" : "Décroissant ↑"}
 				</button>
 			</div>
 			{filteredCharacters.length > 0 ? (
