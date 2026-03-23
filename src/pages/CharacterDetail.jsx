@@ -51,6 +51,7 @@ function CharacterDetail() {
                     {character.class && <p><strong>Classe :</strong> {character.class.name}</p>}
                     {character.race && <p><strong>Race :</strong> {character.race.name}</p>}
                     {character.level && <p><strong>Niveau :</strong> {character.level}</p>}
+                    <button onClick={() => navigate(-1)} className="btn btn-secondary" style={{ marginLeft: "auto", marginBottom: 0 }}>Retour</button>
                 </div>
                 {characterClass?.skills?.length > 0 && (
                     <div className="character-detail-skills">
@@ -79,7 +80,6 @@ function CharacterDetail() {
                 )}
 
                 <div className="character-detail-stats">
-                    <button onClick={() => navigate(-1)} style={{ marginBottom: "1rem" }}>Retour</button>
                     <h2>Statistiques </h2>
                     
                     <div className="stats-container">
