@@ -1,25 +1,29 @@
-AppReact.JS_DND READ ME:
+### AppReact.JS_DND
 
-Cette application (D&D Manager) permet de gérer des personnages et des groupes pour Donjons & Dragons avec React et Vite. (Assurez-vous que l'API est lancée sur localhost:8000)
+Gestionnaire Donjons & Dragons (React + Vite) pour explorer des personnages et groupes. L'API doit tourner sur http://localhost:8000.
 
-LE README prend en compte que vous avez installés node.js.
+#### Prerequis
+- Node.js 18+ (npm inclus)
+- API backend accessible sur http://localhost:8000
 
-si vous n'avez pas installé vite:
-"npm install vite"
+#### Installation
+1) Cloner le projet puis placer-vous dans le dossier
+2) Installer les dependances du frontend: `npm install`
 
-après vous pouvez faire:
-"npm install"
+#### Lancement
+- Dev (avec HMR): `npm run dev`
+- Build de production: `npm run build`
+- Preview du build: `npm run preview`
+- Lint: `npm run lint`
 
-si certain package ont de grande vunerabilité (high severity vulnerability) faites:
-"npm audit fix"
+#### Fonctionnalites
+- Liste des personnages avec recherche par nom, race et classe
+- Tri croissant/decroissant des personnages
+- Fiche detaillee par personnage (statistiques, competences)
+- Liste des groupes sous forme de cartes
+- Filtre pour n'afficher que les groupes avec des places disponibles
+- Fiche detaillee de groupe avec membres
 
-puis vous pouvez faire:
-"npm run dev"
-
-Fonctionnalités :
-- Liste des personnages avec recherche par nom, race, et classe.
-- Tri des personnages par ordre croissant ou décroissant.
-- Fiches détaillées pour chaque personnage avec leurs statistiques et compétences.
-- Liste des groupes affichée sous forme de cartes.
-- Filtre pour n'afficher que les groupes avec des places disponibles.
-- Fiches détaillées pour les groupes et les listes de leurs membres.
+#### Conseils
+- En cas d'alertes de vulnerabilite npm: `npm audit fix`
+- Si le frontend ne trouve pas les donnees, verifier que l'API repond sur le port 8000
